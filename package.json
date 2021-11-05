@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js --ignore 'src/db/db.json'",
+    "dev:debug": "nodemon --inspect=localhost:9228 src/index.js --ignore 'src/db/db.json'",
     "test": "jest tests"
   },
   "devDependencies": {
