@@ -8,9 +8,9 @@ const NEW_POST = 'NEW_POST'
  */
 module.exports = {
   Query: {
-    me(_, __, {user}){
+    me: authenticated((_, __, {user}) => {
       return user
-    },
+    }),
     posts(_, __, {user, models}) {
       return models.Post.findMany({author: user.id})
     },
