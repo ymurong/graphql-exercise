@@ -10,6 +10,13 @@
       "id": "Z2hlvDmLOSRZGebC_Z_aA"
     }
   ],
-  "posts": [],
+  "posts": [
+    {
+      "message": "test",
+      "author": "Z2hlvDmLOSRZGebC_Z_aA",
+      "createdAt": 1636192132502,
+      "id": "O-vNa1tx2CE2VilKzJMAt"
+    }
+  ],
   "settings": []
 }

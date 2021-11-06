@@ -1,4 +1,6 @@
+const { PubSub } = require('apollo-server')
 const gql = require('graphql-tag')
+const pubsub = new PubSub()
 
 module.exports = gql`
   enum Theme {
@@ -99,6 +101,10 @@ module.exports = gql`
     invite(input: InviteInput!): Invite!
     signup(input: SignupInput!): AuthUser!
     signin(input: SigninInput!): AuthUser!
+  }
+
+  type Subscription {
+    newPost: Post
   }
 
 `
