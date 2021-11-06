@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const {models} = require('./db')
 const secret = 'catpack'
-const {AuthenticationError} = require('apollo-server')
+const {AuthenticationError, ForbiddenError} = require('apollo-server')
 
 /**
  * takes a user object and creates  jwt out of it
@@ -41,15 +41,16 @@ const getUserFromToken = token => {
 /**
  * checks if the user on the context has the specified role.
  * continues to the next resolver if true
- * @param {String} role enum role to check for
+ * @param {String} defaultRole enum default role to check for
  * @param {Function} next next resolver function to run
  */
-const authorized = (role, next) => (root, args, context, info) => {
-  if (context.user.role !== role) {
-    throw new AuthenticationError(`you must have ${role} role`)
+const authorized = (defaultRole, next) => (root, {role, ...rest}, context, info) => {
+  const finalRole = role || defaultRole
+  if (context.user.role !== finalRole) {
+    throw new ForbiddenError(`you must have ${finalRole} role`)
   }
 
-  return next(root, args, context, info)
+  return next(root, rest, context, info)
 }
 
 module.exports = {

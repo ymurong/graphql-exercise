@@ -3,6 +3,10 @@ const gql = require('graphql-tag')
 const pubsub = new PubSub()
 
 module.exports = gql`
+  directive @formatDate(format: String = "dd MMM yyy") on FIELD_DEFINITION
+  directive @authenticated on FIELD_DEFINITION
+  directive @authorized(role: Role! = Admin) on FIELD_DEFINITION
+
   enum Theme {
     DARK
     LIGHT
@@ -34,7 +38,7 @@ module.exports = gql`
     id: ID!
     message: String!
     author: User!
-    createdAt: String!
+    createdAt: String! @formatDate
     likes: Int!
     views: Int!
   }
@@ -87,7 +91,7 @@ module.exports = gql`
   }
 
   type Query {
-    me: User!
+    me: User! @authorized(role: MEMBER) @authenticated 
     posts: [Post]!
     post(id: ID!): Post!
     userSettings: Settings!

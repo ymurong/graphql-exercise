@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Scott Moss <willscottmoss@gmail.com>",
-  "license": "MIT",
+  "license": "MIT", 
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js --ignore 'src/db/db.json'",
+    "dev": "nodemon src/index.js --ignore 'src/db/db.json'", 
     "dev:debug": "nodemon --inspect=localhost:9228 src/index.js --ignore 'src/db/db.json'",
     "test": "jest tests"
   },

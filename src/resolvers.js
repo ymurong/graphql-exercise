@@ -10,9 +10,9 @@ const pubsub = new PubSub()
  */
 module.exports = {
   Query: {
-    me: authenticated((_, __, {user}) => {
+    me: (_, __, {user}) => {
       return user
-    }),
+    },
     posts: authenticated((_, __, {user, models}) => {
       return models.Post.findMany({author: user.id})
     }),
